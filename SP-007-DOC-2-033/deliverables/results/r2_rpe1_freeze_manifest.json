@@ -1,0 +1,26 @@
+{
+ "dataset": "ReplogleWeissman2022_rpe1.h5ad (Zenodo 10044268, md5 cc7f1ec50aeb3a3e1b4a6cfa713d80fa)",
+ "cell_line": [
+  "RPE1"
+ ],
+ "n_cells": 247914,
+ "n_qc_pass": 247914,
+ "n_controls_qc_pass": 11485,
+ "n_targets_screen": 2393,
+ "n_strict": 135,
+ "n_descriptive": 2016,
+ "median_strict_target_cells": 177,
+ "pseudo_pools": {
+  "n_pools": 80,
+  "pool_size": 177,
+  "seed": 20260924,
+  "required_cells": 14160,
+  "feasible": false
+ },
+ "qc_fail_breakdown": {
+  "ngenes<500": 0,
+  "ncounts<1000": 0,
+  "mito>20": 0
+ },
+ "batch_n": 56
+}

@@ -1,0 +1,20 @@
+{
+ "id_mapping": "UniProtKB reviewed human (20,431 entries), accession -> primary gene name; retrieved 2026-09-22, rest.uniprot.org",
+ "primary_targets_total": 118,
+ "primary_targets_as_reference_sources": {
+  "collectri": 9,
+  "omnipath_directed": 28,
+  "either": 31
+ },
+ "descriptive_targets_as_reference_sources_either": 499,
+ "measured_genes": 8563,
+ "measured_genes_as_reference_targets": {
+  "collectri": 2953,
+  "omnipath_directed": 3113,
+  "either": 4252
+ },
+ "E_star_edges": 142,
+ "E_star_targets": 25,
+ "floor_check": "locked floor: >=500 edges AND >=50 evaluable targets for graph work - recorded for the audit; stop arm makes no graph claims regardless",
+ "rule": "absence from an incomplete reference is UNLABELED, not negative; E* frozen as audit universe only"
+}

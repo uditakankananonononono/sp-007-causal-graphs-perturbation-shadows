@@ -1,0 +1,9 @@
+{
+  "assoc_r": "-0.042",
+  "class": "perturbation-supported",
+  "construct_se": "0.1125",
+  "gene": "AC008267.5",
+  "null_z": "2.01",
+  "score": "0.5944",
+  "target": "ABCF1"
+}

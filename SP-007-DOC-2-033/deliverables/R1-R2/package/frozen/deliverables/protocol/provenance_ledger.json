@@ -1,0 +1,84 @@
+{
+ "retrieved_ist": "2026-09-22",
+ "primary_candidate": {
+  "canonical": {
+   "name": "Replogle et al. 2022 genome-scale Perturb-seq processed datasets",
+   "archive": "figshare.plus article 20029387 v1",
+   "doi": "10.25452/figshare.plus.20029387.v1",
+   "license": "CC BY 4.0",
+   "provider_md5": {
+    "K562_essential_raw_singlecell_01.h5ad": "4f1122ce1c7f13299a68df6459a266d3"
+   }
+  },
+  "harmonized_used": {
+   "name": "scPerturb harmonized collection (Peidli et al. 2024)",
+   "archive": "Zenodo record 10044268",
+   "license": "CC-BY-4.0",
+   "file": "ReplogleWeissman2022_K562_essential.h5ad",
+   "size_bytes": 1546729675,
+   "md5": "d8cba17576d1a8afc0f7d71b79cad0f7"
+  }
+ },
+ "replication_candidates": [
+  {
+   "name": "Datlinger et al. 2017 CROP-seq K562",
+   "zenodo_10044268_file": "DatlingerBock2017.h5ad",
+   "md5": "c797d8e0320afcc0cc2a94e94805b142",
+   "downloaded_verified": true,
+   "independence": "different lab (Bock), different platform (CROP-seq)"
+  },
+  {
+   "name": "Dixit et al. 2016 Perturb-seq K562",
+   "zenodo_10044268_file": "DixitRegev2016.h5ad",
+   "md5": "2c2a889ef63100eb44e2e0d43d691ddc",
+   "downloaded_verified": "pending download",
+   "independence": "different lab (Regev)"
+  },
+  {
+   "name": "Adamson et al. 2016 CRISPRi Perturb-seq K562 (GSM2406675)",
+   "zenodo_10044268_file": "AdamsonWeissman2016_GSM2406675_10X001.h5ad",
+   "md5": "232f7e3756d41602bbe434b50662a76f",
+   "downloaded_verified": true,
+   "independence": "different platform/library (10X v1), same lab"
+  },
+  {
+   "name": "Replogle et al. 2022 RPE1 genome-scale screen",
+   "zenodo_10044268_file": "ReplogleWeissman2022_rpe1.h5ad",
+   "md5": "cc7f1ec50aeb3a3e1b4a6cfa713d80fa",
+   "downloaded_verified": "pending download",
+   "independence": "same lab/platform, different cell line - does NOT alone satisfy G2"
+  },
+  {
+   "name": "LINCS L1000 phase I (GSE92742)",
+   "files": [
+    "pert_info",
+    "gene_info",
+    "SHA512SUMS"
+   ],
+   "downloaded_verified": true,
+   "independence": "different modality (bulk L1000 shRNA knockdown), many labs",
+   "license": "NIH public data (no redistribution restriction)"
+  }
+ ],
+ "reference_graphs": [
+  {
+   "name": "OmniPath signed interactions",
+   "retrieved": "2026-09-22",
+   "edges": 86188,
+   "sha256": "bb516713f584eda4936e9f1fb07f8431dc63bae22f9395423d1e10874671f44f",
+   "license_note": "OmniPath integrated data CC-BY; upstream constituent resources carry per-source licenses - caveat documented, constituent-source filter available"
+  },
+  {
+   "name": "CollecTRI regulons via OmniPath",
+   "edges": 64515,
+   "sha256": "c9b622365dd09c6b76e44d6ca7a96f1982918ce6f2811f8fdeafa61fbd87cb50",
+   "license_note": "CC-BY"
+  },
+  {
+   "name": "Reactome H. sapiens interactors",
+   "pairs": 124865,
+   "sha256": "a5ed8376d7da82b0dbfc6f0d243b422b2635482025b74e434d3b9be48cb55e5d",
+   "license_note": "CC-BY; physical interactors, undirected - secondary reference only"
+  }
+ ]
+}

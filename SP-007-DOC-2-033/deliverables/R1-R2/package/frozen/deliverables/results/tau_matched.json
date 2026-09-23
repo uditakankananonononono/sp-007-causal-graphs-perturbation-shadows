@@ -1,0 +1,14 @@
+{
+ "tau_matched121": 0.26894060522317886,
+ "median_abs_matched_pseudo": 0.11560706049203873,
+ "mad": 0.07666677236557007,
+ "n_pseudo": 80,
+ "frac_edges_above_tau": {
+  "matched_ntc_pseudo": 0.18182295924325587,
+  "shuffled_labels_median": 0.10241737708746934,
+  "primary": 0.15384181450742948
+ },
+ "n_edges_supported_matched": 79636,
+ "supported_per_target_median": 635.0,
+ "formula_note": "locked tau formula unchanged (median + 2*MAD over NTC pseudo-intervention effects); pools re-drawn at matched size 121 cells x80 disjoint, seed 20260922+4. Original large-pool tau=0.0867 under-calibrated - preserved failure exposed by shuffled-label control."
+}

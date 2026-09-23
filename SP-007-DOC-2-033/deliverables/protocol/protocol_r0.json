@@ -1,0 +1,28 @@
+{
+  "project": "SP-007 / DOC-2-033: Causal Graphs From Perturbation Shadows",
+  "round": "R0 - deep open-data feasibility and grounding",
+  "frozen_at_ist": "2026-09-22T02:12:00+05:30",
+  "operational_user": "perturbation-biology or drug-discovery scientist deciding which directed gene relationships deserve follow-up experiments",
+  "output_contract": "evidence-ranked hypotheses; never proof of causality, never treatment advice; an inferred edge is never called causal merely because a graph method emitted it",
+  "feasibility_gates": {
+    "G1_primary_source_support": "PASS iff >=1 primary single-cell CRISPR perturbation dataset with ALL of: (a) openly redistributable license verified from the archive (CC-BY/CC0/public-domain equivalent); (b) versioned persistent archive (Figshare/Zenodo/GEO) with provider checksums; (c) count matrix + per-cell perturbation assignments + non-targeting control cells; (d) scale floor: >=20 distinct perturbation targets and >=10,000 cells; (e) full download verified by checksum, or selective download verified against provider metadata",
+    "G2_replication_source": "PASS iff a second independent dataset (different lab, platform, or modality) covering >=30% of primary perturbation targets is reachable with license + checksums; FAIL does not stop the round - it forces the semi-synthetic calibration arm and is recorded",
+    "G3_reference_graph": "PASS iff >=1 openly licensed directed gene-interaction reference (e.g. OmniPath, CollecTRI/DoRothEA, SIGNOR, Reactome) retrievable in versioned form, with provenance and incompleteness documented; a semi-synthetic calibration arm spec is frozen regardless and kept clearly separated from biological claims",
+    "G4_environment": "PASS iff every analysis tool is installed with pinned version + sha256 recorded in the environment ledger; missing tools block the benchmark, not the feasibility report"
+  },
+  "r0_verdict_rule": "GO to R1 locked benchmark iff G1 AND G3 AND G4 pass (G2 decides the replication arm, not GO/STOP). Otherwise STOP honestly at feasibility with the audit preserved.",
+  "benchmark_design_skeleton_frozen_for_r1": {
+    "causal_unit": "perturbation target (gene-level intervention), cells as replicates; never random-cell splits",
+    "intervention_exposure": "CRISPRi/a/KO guide assignment; guide-efficiency and multiplicity-of-infection sensitivity mandatory",
+    "response": "single-cell gene-expression change vs non-targeting controls, standardized within timepoint x cell-line strata",
+    "controls": "non-targeting controls mandatory; doublet/multiplet policy declared before analysis",
+    "split": "train/test by held-out perturbation target or by study; random-cell split forbidden",
+    "reference": "open directed reference graph with documented provenance and incompleteness; semi-synthetic calibration arm clearly separated",
+    "baselines": "simple association (correlation), perturbation-response mean shift, plus >=1 mature causal/graph method",
+    "metrics": "directionality recovery vs reference, calibration / top-k precision, intervention prediction on held-out targets, uncertainty and abstention rates",
+    "hard_gates_r1": "source support, held-perturbation transport, improvement over correlation, edge-direction recovery, negative controls clean, cross-study replication (if G2 passed), full reproducibility",
+    "failure_controls_r1": "shuffled perturbation labels, permuted time/condition, non-targeting controls, expression-matched null genes, guide-efficiency/MOI sensitivity, cell-state confounding stress, data-leakage assertions; contradictions between association and perturbation evidence preserved",
+    "commercial_depth_r1plus": "per-edge evidence cards (perturbation, response, study, uncertainty, contradictions), workflow integration, privacy/licensing, monitoring, rollback, compute/runtime, measured reviewer effort"
+  },
+  "stop_condition": "if open datasets lack usable perturbation assignments or any replication path, stop at feasibility and preserve the audit"
+}

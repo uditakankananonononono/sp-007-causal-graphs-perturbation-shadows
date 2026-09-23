@@ -1,0 +1,9 @@
+{
+ "tau_rpe1": 0.23605981469154358,
+ "median_abs": 0.10186460614204407,
+ "mad": 0.06709760427474976,
+ "n_pools": 64,
+ "pool_size": 177,
+ "n_supported": 87880,
+ "supported_per_target_median": 493.0
+}

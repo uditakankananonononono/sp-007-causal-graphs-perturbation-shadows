@@ -1,0 +1,50 @@
+{
+ "K562_essential": {
+  "n_cells": 310385,
+  "n_genes": 8563,
+  "X_type": "dense",
+  "n_perturbation_categories": 2058,
+  "control_like_categories": {
+   "control": 10691
+  },
+  "total_cells_in_control_like": 10691,
+  "sample_categories": [
+   "AAAS",
+   "AAMP",
+   "AARS",
+   "AARS2",
+   "AASDHPPT",
+   "AATF",
+   "ABCB7",
+   "ABCB10",
+   "ABCE1",
+   "ABCF1",
+   "ABCG1",
+   "ABHD11"
+  ]
+ },
+ "rpe1": {
+  "n_cells": 247914,
+  "n_genes": 8749,
+  "X_type": "dense",
+  "n_perturbation_categories": 2394,
+  "control_like_categories": {
+   "control": 11485
+  },
+  "total_cells_in_control_like": 11485,
+  "sample_categories": [
+   "AAAS",
+   "AAMP",
+   "AAR2",
+   "AARS",
+   "AARS2",
+   "AASDHPPT",
+   "AATF",
+   "ABCB7",
+   "ABCB10",
+   "ABCE1",
+   "ABCF1",
+   "ABCG1"
+  ]
+ }
+}

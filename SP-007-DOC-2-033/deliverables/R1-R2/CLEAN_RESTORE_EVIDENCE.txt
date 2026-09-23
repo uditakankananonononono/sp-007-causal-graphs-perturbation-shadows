@@ -1,0 +1,44 @@
+DOC-2-033 R1/R2 revised clean-restore evidence
+Generated: 2026-09-23 IST
+
+Archive: DOC-2-033-R1-R2-package.tar.gz
+Archive bytes: 886655
+Archive SHA-256: 8fb772aab2ddf03f6dd907c9a772cb06b799f2c089ed5553533ce0f781a1258a
+Internal MANIFEST.sha256 SHA-256: 10f44ce696f1f8fb50cb9262355ba3e257c6fcd3249145fa602f43c5e433083e
+Standalone PDF: DOC-2-033-R1-R2-paper.pdf
+Standalone PDF bytes: 229071
+Standalone PDF SHA-256: da33e7e59251f057da7da57668e1f129e1d529661c1f782974ea8a3365657b9b
+
+Fresh restore from archive bytes only:
+- safe extraction: PASS
+- sha256sum -c MANIFEST.sha256: PASS (71/71 files)
+- read-only CLI verify: PASS
+- golden/determinism/corruption tests: PASS
+- source-hash map: 48 frozen copied items, 0 mismatches
+- deterministic figure rerender under matplotlib 3.10.9: PASS (byte-identical)
+- PDF pages: 21
+
+CLI verification output:
+MANIFEST PASS
+perturbation-supported PASS rows=26525 expected=26525
+association-only PASS rows=2011 expected=2011
+reference-discordant PASS rows=2 expected=2
+AUDIT RESULT: PASS
+
+Test output:
+[PASS] golden summary
+[PASS] golden schema
+[PASS] golden lookup
+[PASS] golden row
+[PASS] verify
+[PASS] deterministic full export
+[PASS] corruption detected
+ALL TESTS PASS
+
+Correction scope only:
+1. Populated the previously empty source-hash map with all 48 frozen copied items.
+2. Put clean-restore evidence inside the archive as well as beside it.
+3. Added the exact deterministic figure renderer/specification and verified byte-identical rerendering.
+4. Regenerated custody metadata from the revised bytes; this outer record explicitly inventories the standalone PDF.
+
+Nothing else changed: report content, frozen bytes, CLI constraints, claim boundaries, and scientific values are unchanged. No push or Drive upload was performed.

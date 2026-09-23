@@ -1,0 +1,34 @@
+{
+ "self_edge_control": {
+  "n_targets_with_self_gene": 102,
+  "median_self_score": -0.9369319677352905,
+  "frac_self_negative": 1.0,
+  "frac_self_below_-tau": 0.9803921568627451,
+  "null_median": -0.008314563892781734,
+  "null_frac_below_-tau": 0.2372549019607843,
+  "verdict": "PASS"
+ },
+ "permuted_strata": {
+  "median_score_correlation": 0.9944371056973083,
+  "verdict": "PASS"
+ },
+ "leave_one_batch_out": {
+  "n_targets_tested": 118,
+  "median_correlation": 0.9997679656745355,
+  "verdict": "PASS"
+ },
+ "cell_state_sensitivity": {
+  "n_target_state_pairs": 354,
+  "median_correlation": 0.5855308688197064,
+  "verdict": "REVIEW"
+ },
+ "leakage_assertions": {
+  "fold_target_overlap": 0,
+  "pseudo_rows_are_controls_sampled": true,
+  "verdict": "PASS"
+ },
+ "moi_sensitivity": {
+  "note": "vacuous on this harmonized file: all targeting cells nperts==1 (verified in QC audit); multi-perturbation exclusion documented in freeze manifest",
+  "verdict": "DOCUMENTED"
+ }
+}

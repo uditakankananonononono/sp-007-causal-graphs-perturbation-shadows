@@ -1,0 +1,56 @@
+{
+ "n_shared_targets": 115,
+ "n_shared_genes": 7226,
+ "sign_agreement": {
+  "value": 0.5348993369354625,
+  "boot95": [
+   0.5275093262253457,
+   0.5427876689250171
+  ],
+  "expr_matched_null": 0.5255652173913044,
+  "target_permuted_null_mean": 0.5097101409162564,
+  "target_permuted_null_p95": 0.5124216897916943
+ },
+ "rank_correlation_median": {
+  "value": 0.052563417752208345,
+  "boot95": [
+   0.05137419472082131,
+   0.054238549022100783
+  ],
+  "target_permuted_null_mean": 0.010885994532741002,
+  "target_permuted_null_p95": 0.019128370443399555
+ },
+ "supported_overlap": {
+  "precision_mean": 0.029518373649738732,
+  "recall_mean": 0.08751706349388375,
+  "jaccard_mean": 0.01824089170249083,
+  "precision_boot95": [
+   0.023935855800512284,
+   0.035713676624442275
+  ],
+  "target_permuted_null_precision_mean": 0.02729263534384653,
+  "target_permuted_null_precision_p95": 0.032467078523817264
+ },
+ "calibration": {
+  "frac_k562_supported_also_rpe1_supported": 0.10960052146382344,
+  "target_permuted_null_rate": 0.02729263534384653
+ },
+ "pass_evaluation": {
+  "sign": true,
+  "rank_correlation": true,
+  "precision": false,
+  "TRANSPORT": "FAIL",
+  "rule": "pass iff sign_agreement AND rank_correlation AND precision each beat target-permuted null p95 with bootstrap CI excluding null mean"
+ },
+ "protocol_r2_sha256": "f2231e39380484637366f06c392ba7a71189c859df6eb768bbf534b4ff869256",
+ "outcome": "transport_fail -> scoring procedure closed; R1 retained as K562-only atlas",
+ "rpe1_freeze_manifest_sha256": "b5311740a4823a8db4e1c398534e82f61c757d94a2de283b0267966f48180420",
+ "overlap_freeze_sha256": "77eb86ad1779a7a2",
+ "pool_adaptation": "n_pools=min(80, floor(11485/177))=64, pool_size=177, seed unchanged - documented, gate text untouched",
+ "abstentions_honored": [
+  "cell-state abstained",
+  "no graph claims",
+  "RPE1 cross-context support only",
+  "LINCS deferred"
+ ]
+}

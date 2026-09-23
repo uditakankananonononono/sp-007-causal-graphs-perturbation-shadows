@@ -1,0 +1,11 @@
+{
+ "n_edges_supported_final": 26525,
+ "supported_per_target_median": 142.5,
+ "supported_per_target_p10": 29.700000000000003,
+ "criteria": "|score|>tau_matched(0.269) AND 95% construct-CI excludes 0 AND per-gene NTC-null |z|>=1.96",
+ "cell_state_matched_control": {
+  "n_pairs": 354,
+  "median_correlation": 0.606039537115832,
+  "p10_correlation": 0.47499498459936584
+ }
+}

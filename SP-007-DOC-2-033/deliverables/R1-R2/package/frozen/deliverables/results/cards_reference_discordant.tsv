@@ -1,0 +1,3 @@
+target	gene	class	reference_sign	observed_score	null_z	note
+PKM	STAT3	reference-discordant	1	-0.3869	-2.87	perturbation response opposes reference sign - contradiction preserved, not resolved
+PPP1CA	IKZF1	reference-discordant	1	-0.3505	-2.06	perturbation response opposes reference sign - contradiction preserved, not resolved

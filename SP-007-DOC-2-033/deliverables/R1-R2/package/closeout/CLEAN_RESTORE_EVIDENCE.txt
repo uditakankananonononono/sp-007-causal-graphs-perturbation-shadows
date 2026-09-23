@@ -1,0 +1,14 @@
+DOC-2-033 R1/R2 internal clean-restore evidence
+Generated: 2026-09-23 IST
+
+This in-package record covers package-content restoration. The outer evidence and outer manifest, transferred beside the archive, carry the final archive byte count and SHA-256 because an archive cannot contain its own final hash.
+
+Validation performed before final archival:
+- internal MANIFEST.sha256 exhaustive coverage: PASS
+- read-only CLI verification: PASS (26,525 / 2,011 / 2 exact rows)
+- golden, determinism, and corruption tests: PASS
+- SOURCE_HASH_MAP.tsv: 48 copied frozen items, 48 MATCH, 0 mismatches
+- PDF: 21 A4 pages; all 21 pages inspected by the independent auditor in the prior byte set, and the report bytes are unchanged in this correction
+- figure renderer: transferred; packaging-time rerender under matplotlib 3.10.9 produced byte-identical PNGs
+
+Scope: packaging-only. No scientific rerun, rescoring, filtering, threshold change, model invocation, repository push, or Drive upload. Core conclusion unchanged: K562 atlas exploratory/bounded; RPE1 transport failed.

@@ -1,0 +1,9 @@
+{
+ "classes": {
+  "perturbation-supported": 26525,
+  "association-only_total": 2011,
+  "association-only_emitted_top": 2011,
+  "reference-discordant": 2
+ },
+ "rule": "no edge is a causal claim; cards rank evidence for human review; unlisted edges are UNLABELED not negative"
+}

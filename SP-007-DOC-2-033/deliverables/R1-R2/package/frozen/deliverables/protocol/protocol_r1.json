@@ -1,0 +1,46 @@
+{
+ "project": "SP-007 / DOC-2-033: Causal Graphs From Perturbation Shadows",
+ "round": "R1 - locked benchmark",
+ "frozen_at_ist": "2026-09-22T02:45:30+05:30",
+ "r0_protocol_sha256": "f4950b94c2056be69f09016e273b1e7327ed08a9a1d9a9b06ccc42f44b29caba",
+ "output_contract": "evidence-ranked hypotheses as evidence cards / review queue; an inferred edge is never called causal because a graph method emitted it; no treatment advice",
+ "qc_and_units": {
+  "intervention_unit": "target gene (independent perturbation); cells are replicates",
+  "primary_cell_filter": "ngenes >= 500 AND ncounts >= 1000 AND percent_mito <= 20 AND nperts == 1 AND perturbation not containing '+' (multi-perturbation cells excluded from primary, retained as sensitivity arm)",
+  "target_inclusion": ">= 30 QC-pass cells AND >= 2 distinct guide_ids",
+  "ntc": "perturbation == 'control', same cell QC; matched to each target's batch composition by stratified sampling within batch",
+  "pseudobulk": "sum raw counts per (target x batch stratum); CPM library-size normalize; log1p; response score per (target, gene) = log2 fold-change vs batch-matched NTC pseudobulk",
+  "strata": "batch (obs column); cell-state stratum = tercile of core_adjusted_UMI_count computed within controls, applied to all cells; both frozen before outcomes"
+ },
+ "split": {
+  "primary": "5-fold by held-out target, frozen seed 20260922; no target contributes cells to more than one fold",
+  "sensitivities": ["leave-one-chromosome-out for chromosomes with >= 20 targets", "TF vs non-TF split by CollecTRI source membership, reported only if each side has >= 50 targets"]
+ },
+ "reference_audit_then_freeze": {
+  "procedure": "quantify coverability: targets present as sources in CollecTRI and/or OmniPath signed; measured genes present as targets; freeze evaluable edge universe E* = {(i,j): i in (targets n reference sources), j in (measured n reference targets), (i,j) in CollecTRI OR OmniPath signed}",
+  "floor": "if |E*| < 500 edges or < 50 evaluable targets, stop at bounded perturbation-response atlas; no graph claims",
+  "rule": "absence from an incomplete reference is UNLABELED, never negative; semi-synthetic calibration arm stays fully separate from biological claims"
+ },
+ "methods": {
+  "baseline_correlation": "Pearson correlation between perturbation-gene expression and response-gene expression across all-condition pseudobulk profiles (observational)",
+  "baseline_mean_shift": "signed pseudobulk log2FC vs matched NTC (the perturbation-response score itself)",
+  "causal_method": "DirectLiNGAM (pip lingam, version + wheel sha256 pinned) over pseudobulk log2CPM across perturbation conditions, integrated with interventional scores; final edge ranking = bootstrap-median signed interventional effect with LiNGAM orientation where LiNGAM confidence supports it; combination rule frozen before fitting",
+  "prediction_contract": "every emitted edge carries direction, sign, magnitude, bootstrap uncertainty; abstain when the 95% target-bootstrap CI spans 0 or |effect| < tau",
+  "tau_rule": "tau = median(|NTC pseudo-intervention effects|) + 2 * MAD, computed once on NTC pseudo-interventions before any evaluation; frozen value recorded"
+ },
+ "hard_gates": {
+  "G1_freeze": "QC/cohort/split executed with manifest + hashes before scores",
+  "G2_split_integrity": "assertion: zero target overlap between train and test folds",
+  "G3_reference_universe": "audit complete, E* frozen with hash; floor respected",
+  "G4_held_target_prediction": "held-target intervention-response prediction (AP/AUC against frozen labels) exceeds correlation AND mean-shift baselines, paired target-bootstrap 95% CI excludes zero improvement",
+  "G5_direction_and_topk": "signed direction recovery on E* above 95th percentile of degree+expression-matched nulls; top-k precision at k in {50,100,200} exceeds matched nulls",
+  "G6_controls": "shuffled perturbation labels ~ null; NTC pseudo-interventions: no systematic sign, high abstention; permuted strata: no metric inflation; expression-matched null genes: no excess edges; data-leakage assertions pass",
+  "G7_sensitivity": "guide-level aggregation, multi-pert inclusion, leave-one-batch-out, cell-state strata: no gate-level conclusion reverses",
+  "G8_reproducibility": "independent rerun reproduces identical sha256 of the raw prediction file",
+  "G9_replication": "LINCS Level-5 downloaded with SHA512 vs GSE92742_SHA512SUMS; gene-ID mapping (Entrez), modality (bulk trt_sh z-scores), aggregation (MODZ consensus per pert_id across cell lines) and the 706-target overlap frozen BEFORE reading replication performance; K562->LINCS sign-concordance on frozen top-100 response genes vs permutation null; reported separately from same-lab RPE1 support; LINCS access failure -> bounded atlas without transport claims"
+ },
+ "failure_controls": ["shuffled perturbation labels", "NTC pseudo-interventions", "permuted batch/cell-state strata", "expression-matched null genes", "guide-efficiency and MOI (nperts) sensitivity", "cell-state confounding stress", "data-leakage assertions (fold contamination, feature leakage)"],
+ "evidence_cards": "per-edge cards in three separate classes: association-only, perturbation-only, reference-discordant; each card links perturbation, response, study, uncertainty, contradictions",
+ "commercial_artifact": "review queue + evidence cards only; source-level license filter for OmniPath constituents (document excluded constituents); runtime/memory measured; reviewer-time measurement protocol; monitoring + rollback spec",
+ "stop_condition": "if reference coverability, LINCS Level-5 access, or held-target support fails: stop at a bounded perturbation-response atlas rather than weakening the graph claim"
+}

@@ -1,0 +1,42 @@
+{
+ "project": "SP-007 / DOC-2-033: Causal Graphs From Perturbation Shadows",
+ "round": "R2 - same-lab cross-cell-line transport (K562 -> RPE1); supporting cross-context replication, NEVER independent replication",
+ "frozen_at_ist": "2026-09-22T03:02:30+05:30",
+ "r1_protocol_sha256": "7836cb204b997335c2abfbdacf07b6ef865e6500256b52ad91b91766218a85dc",
+ "frozen_algorithm_from_r1": {
+  "estimator": "pooled-count rate vs batch-matched NTC control rate; per-batch control rates weighted by the unit's per-batch cell counts; log2((r_unit*1e6+1)/(r_ctl*1e6+1))",
+  "pool_size_rule": "NTC pseudo-intervention pools: disjoint control-cell pools of size = median QC-pass cells per primary target IN THE DATASET BEING SCORED; n_pools = 80; seed 20260922+4",
+  "tau_formula": "tau = median(|pseudo-pool scores|) + 2*MAD, computed per dataset before any evaluation",
+  "support_rule": "edge supported iff |score| > tau_dataset AND 95% construct-CI excludes 0 AND per-gene NTC-null |z| >= 1.96 (z from the dataset's own matched pools)",
+  "construct_rule": "construct = distinct guide_id VALUE (paired-guide construct); halves never independent; >=2 distinct constructs AND >=30 QC-pass cells for strict cohort",
+  "qc_rule": "ngenes>=500, ncounts>=1000, percent_mito<=20, targeting cells nperts==1, controls perturbation=='control' AND nperts==0, '+'-named excluded (vacuity documented)",
+  "card_schema": "unchanged from R1 (target, gene, class, score, construct_se, null_z, assoc_r, flags)",
+  "note": "orchestrator: R1's pool-size matching was informed by a failed control, so R1's 26,525 edges are exploratory review cards; in R2 this entire algorithm is preregistered before RPE1 scoring"
+ },
+ "cohorts": {
+  "rpe1_strict": ">=30 QC-pass cells AND >=2 distinct construct-level guide_ids (same rule as R1)",
+  "rpe1_descriptive": ">=30 QC-pass cells; single-construct targets flagged GUIDE-REPLICATION-UNVERIFIED",
+  "k562": "R1 frozen cohorts reused unchanged"
+ },
+ "transport_unit": "shared target x shared measured gene; shared = target in BOTH strict cohorts AND gene measured in BOTH matrices; ID mapping (gene_name exact match on scPerturb-harmonized var) and the overlap list FROZEN before any outcome comparison",
+ "metrics": {
+  "sign_agreement": "fraction of shared units with concordant score sign, vs expression-matched null units",
+  "rank_correlation": "Spearman correlation of per-target score vectors across shared genes, target-level",
+  "supported_set_overlap": "precision/recall/Jaccard of RPE1-supported vs K562-supported edge sets per shared target",
+  "calibration": "K562-supported edges: fraction RPE1-supported, vs target-permuted null rate",
+  "uncertainty": "target-level bootstrap 95% CIs (1,000 resamples, seed 20260922) for every transport metric",
+  "nulls": ["expression-matched null genes (control-mean matched, same rule as R1)", "target-permuted (score vectors permuted across shared targets)"]
+ },
+ "stratification_frozen_before_scores": {
+  "response_gene_strata": ["A: constitutively expressed in BOTH lines' controls (control CPM >= 1 in K562 AND RPE1)", "B: all other measured genes"],
+  "purpose": "separate biological cell-line context change from technical instability; no other stratification without a new lock"
+ },
+ "abstentions": ["cell-state claims stay abstained (no adequately supported state design preregistered)",
+   "no graph claim unless a separately locked reference-coverability floor passes in RPE1 (not attempted here)",
+   "LINCS deferred to suitable infrastructure"],
+ "outcomes": {
+  "transport_fail": "close the scoring procedure; R1 retained as K562-only atlas",
+  "transport_pass": "graduate only a cross-cell-line response-evidence procedure; NOT causal graph recovery"
+ },
+ "pass_rule_frozen": "transport PASSES iff sign_agreement AND rank_correlation AND supported-set precision each beat their respective null 95th percentile with bootstrap CI excluding the null rate; else transport_fail"
+}

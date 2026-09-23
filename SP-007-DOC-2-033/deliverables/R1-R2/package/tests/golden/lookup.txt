@@ -1,0 +1,11 @@
+[
+  {
+    "class": "reference-discordant",
+    "gene": "STAT3",
+    "note": "perturbation response opposes reference sign - contradiction preserved, not resolved",
+    "null_z": "-2.87",
+    "observed_score": "-0.3869",
+    "reference_sign": "1",
+    "target": "PKM"
+  }
+]

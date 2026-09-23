@@ -1,0 +1,46 @@
+{
+ "protocol_r0_sha256": "f4950b94c2056be69f09016e273b1e7327ed08a9a1d9a9b06ccc42f44b29caba",
+ "gates": {
+  "G1_primary_source_support": {
+   "pass": true,
+   "source": "Replogle et al. 2022 genome-scale Perturb-seq, K562 essential screen; canonical Figshare.plus article 20029387 v1 (doi:10.25452/figshare.plus.20029387.v1, CC BY 4.0); harmonized copy scPerturb Zenodo record 10044268 (CC-BY-4.0)",
+   "download_integrity": "ReplogleWeissman2022_K562_essential.h5ad md5 d8cba17576d1a8afc0f7d71b79cad0f7 verified exactly after parallel byte-range download",
+   "content": "310,385 cells x 8,563 genes, dense counts; 2,058 perturbation categories (2,057 targets + control), 10,691 non-targeting control cells; per-cell perturbation assignment, guide_id, cell_line, batch, nperts (multiplet policy input), percent_mito QC",
+   "floors": "targets 2057 >= 20; cells 310,385 >= 10,000"
+  },
+  "G2_replication_source": {
+   "pass": true,
+   "lincs": {
+    "dataset": "LINCS L1000 phase I GSE92742 (bulk transcriptional signatures, shRNA/oe genetic perturbations; NIH public data)",
+    "unique_genetic_genes": 8912,
+    "overlap_n": 706,
+    "overlap_pct": 34.3,
+    "gate": ">=30%",
+    "note": "different modality (bulk L1000) and many independent labs; Level-5 signature matrix download deferred to R1 design (metadata + SHA512SUMS grounded)"
+   },
+   "cross_cell_line": {
+    "rpe1_targets": 2393,
+    "k562_overlap": 2055,
+    "note": "same lab/platform - supporting evidence, not G2-qualifying independence"
+   },
+   "cross_study": {
+    "datlinger_bock_2017": "verified download (md5 exact) but zero target-gene overlap with the essential-gene screen - recorded as limitation, not hidden"
+   }
+  },
+  "G3_reference_graph": {
+   "pass": true,
+   "primary": "CollecTRI regulons via OmniPath: 64,515 directed signed TF->target edges, sha256 c9b622365dd09c6b76e44d6ca7a96f1982918ce6f2811f8fdeafa61fbd87cb50",
+   "secondary": [
+    "OmniPath signed interactions: 86,188 directed edges, sha256 bb516713f584eda4936e9f1fb07f8431dc63bae22f9395423d1e10874671f44f (integrated CC-BY; upstream constituent license caveat documented)",
+    "Reactome H.sapiens interactors: 124,865 physical pairs, sha256 a5ed8376d7da82b0dbfc6f0d243b422b2635482025b74e434d3b9be48cb55e5d (undirected - secondary only)"
+   ],
+   "incompleteness": "reference graphs cover TF->target and signaling subsets of the 8,563 measured genes; incompleteness is inherent and will be quantified in R1 (coverage of primary targets); semi-synthetic calibration arm spec frozen in protocol regardless"
+  },
+  "G4_environment": {
+   "pass": true,
+   "detail": "python 3.10.12; anndata 0.11.4, h5py 3.16.0, scikit-learn 1.7.2, numpy 2.2.6, pandas 2.3.3, scipy 1.15.3 - versions + wheel sha256 pinned in protocol/environment_ledger.json"
+  }
+ },
+ "verdict": "GO to R1 locked benchmark",
+ "r1_scope_note": "R1 must lock: exact causal unit/response definition, NTC handling + doublet/multiplet policy via nperts, train/test split by held-out perturbation target, baselines (correlation, perturbation-response mean shift), >=1 mature causal/graph method, directionality metrics vs CollecTRI/OmniPath, calibration/top-k precision, intervention prediction on held-out targets, uncertainty + abstention, hard gates incl. held-perturbation transport and improvement over correlation, and the failure controls (shuffled labels, permuted condition, NTCs, expression-matched nulls, guide-efficiency/MOI sensitivity, cell-state confounding, leakage assertions)."
+}

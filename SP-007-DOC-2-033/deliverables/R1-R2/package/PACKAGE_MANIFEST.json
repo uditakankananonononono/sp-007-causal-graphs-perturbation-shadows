@@ -1,0 +1,15 @@
+{
+  "package_id": "DOC-2-033-R1-R2-package",
+  "version": "1.0.0",
+  "created": "2026-09-23",
+  "kind": "packaging-only combined R1/R2 submission package",
+  "source": {"repo": "https://github.com/uditakankananonononono/science-program", "commit": "7289559057802d5dbcea4e6bc46cea3e8c2cf19c", "tree": "projects/SP-007-DOC-2-033"},
+  "conclusion": "K562 atlas exploratory/bounded; RPE1 transport failed",
+  "nonclaims": ["no general perturbation atlas", "no validated causal map", "no successful cross-cell-line transfer"],
+  "r1": {"strict_targets": 118, "review_edges": 26525, "definition": "|score|>0.269 AND 95% construct-CI excludes 0 AND per-gene NTC-null |z|>=1.96", "association_only_cards": 2011, "reference_discordant_cards": 2},
+  "r2": {"shared_targets": 115, "shared_genes": 7226, "transport": "FAIL", "supported_precision": 0.029518373649738732, "null_p95": 0.032467078523817264},
+  "cli": "read-only exact query/export; no scoring, ranking, filtering, model invocation, or threshold parameter",
+  "large_matrices": "external references only; existing hashes retained",
+  "paper_pages": 21,
+  "custody": "MANIFEST.sha256 covers every regular package file except itself; archive SHA-256 is the outer custody record"
+}

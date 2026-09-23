@@ -1,0 +1,95 @@
+{
+ "protocol_r1_sha256": "7836cb204b997335c2abfbdacf07b6ef865e6500256b52ad91b91766218a85dc",
+ "round_outcome": "BOUNDED PERTURBATION-RESPONSE ATLAS (locked stop arm executed) - no transport claims, no graph claims",
+ "cohort": {
+  "qc_pass_cells": 310385,
+  "ntc_cells": 10691,
+  "primary_targets": 118,
+  "descriptive_tier_targets": 1971,
+  "primary_definition": ">=30 QC-pass cells AND >=2 distinct construct-level guide_id values (orchestrator routing 2:47:51: paired-guide halves are co-delivered, not independent replicates)",
+  "descriptive_flags": "1,853 single-construct targets marked GUIDE-REPLICATION-UNVERIFIED; uncertainty clustered at construct/target and cell/batch; halves never treated as independent",
+  "folds": "5-fold by held-out target over the 118 primary targets, seed 20260922, zero overlap (asserted)",
+  "freeze_manifest_folds_sha256": "2a221605ffe9fce16fa8913a6226d0d212a6d4b955ee6c5d123877fd7a4cadf7"
+ },
+ "estimator": "pooled-count rate vs batch-matched NTC control rate (weights = unit cells per batch). Documented stabilization: median 2-3 cells/target-batch makes per-stratum CPM ratios noise-dominated (naive estimator: 87% of edges above tau - preserved failure); gate text untouched",
+ "tau_calibration": {
+  "final": 0.269,
+  "formula": "locked: median + 2*MAD over NTC pseudo-intervention effects",
+  "preserved_failure": "original large-pool pseudo-targets (~1,069 cells) gave tau=0.0867; shuffled-label control exposed it as under-calibrated (51.6% of shuffled edges above tau). Pools re-drawn at matched size 121 cells x80 disjoint, seed 20260922+4"
+ },
+ "controls_battery": {
+  "shuffled_labels": {
+   "verdict": "PASS under matched calibration",
+   "frac_above_tau": {
+    "shuffled": 0.102,
+    "primary": 0.154,
+    "ntc_null": 0.182
+   },
+   "note": "fraction-above-tau alone does not discriminate (broad shared essentiality programs in targeting-cell pools); operative support criterion adds construct-CI and per-gene null z"
+  },
+  "ntc_pseudo_interventions": {
+   "verdict": "PASS",
+   "detail": "80 matched-size pools; null median |score| 0.116; used for per-gene null z and tau"
+  },
+  "self_edge_positive_control": {
+   "verdict": "PASS",
+   "median_self_score": -0.937,
+   "frac_below_-tau": 0.98,
+   "expression_matched_null_median": -0.008
+  },
+  "permuted_strata": {
+   "verdict": "PASS",
+   "median_score_correlation": 0.994
+  },
+  "leave_one_batch_out": {
+   "verdict": "PASS",
+   "median_correlation": 0.99977,
+   "n_targets": 118
+  },
+  "cell_state": {
+   "verdict": "REVIEW (documented, not hidden)",
+   "median_correlation_pooled_vs_state": 0.606,
+   "interpretation": "~40-cell per-state pools are underpowered at this cell count; consistent with matched-null noise scale (121-cell null median |score| 0.116 vs tau 0.269). Atlas scores are pooled across cell states; per-state claims ABSTAIN"
+  },
+  "moi": {
+   "verdict": "DOCUMENTED",
+   "note": "vacuous: all targeting cells nperts==1 in harmonized file"
+  },
+  "leakage_assertions": {
+   "verdict": "PASS",
+   "fold_target_overlap": 0
+  }
+ },
+ "reference_audit": {
+  "primary_targets_as_sources": 31,
+  "measured_genes_as_targets": 4252,
+  "E_star_edges": 142,
+  "E_star_targets": 25,
+  "floor": "locked graph-work floor >=500 edges AND >=50 targets - NOT MET even before the stop arm; independently confirms bounded-atlas routing",
+  "rule": "absence from reference = UNLABELED not negative"
+ },
+ "atlas_output": {
+  "supported_edges": 26525,
+  "per_target_median": 142.5,
+  "per_target_p10": 29.7,
+  "criteria": "|score|>0.269 AND 95% construct-CI excludes 0 AND per-gene NTC-null |z|>=1.96",
+  "evidence_cards": {
+   "perturbation-supported": 26525,
+   "association-only": 2011,
+   "reference-discordant": 2
+  },
+  "held_target_note": "held-target folds used for stability/control structure only; no held-target graph metrics claimed under the stop arm"
+ },
+ "lincs_transport": {
+  "status": "ENVIRONMENTAL NONTRANSPORT RESULT",
+  "evidence": "GSE92742 Level-5 gctx.gz = 21,328,033,748 bytes vs 15GB free disk; macchiato.clue.io S3 AccessDenied (anonymous); gzip not range-sliceable; iLINCS is a different aggregation - not Level-5 per the locked gate",
+  "rule": "LINCS deferred to an environment that can hold it; no iLINCS/RPE1 substitution after outcome work began (orchestrator 2:46:24)"
+ },
+ "commercial_artifact": {
+  "review_queue": "3 card classes, TSV + summary JSON",
+  "licenses": "OmniPath upstream-constituent caveat documented; CollecTRI CC-BY; Zenodo CC-BY-4.0; LINCS NIH public",
+  "runtime_memory": "accumulation 99s/0.60GB peak; construct pass 42s/0.31GB; controls battery <5s; total pipeline <10 min on 2 cores/1GB",
+  "reviewer_time_protocol": "frozen: cards sorted by |null_z|; reviewer samples top-50 per target, records accept/reject/abstain per card; inter-reviewer agreement on 10% overlap",
+  "monitoring_rollback": "monitor: drift of supported-edge counts per target vs this freeze; rollback: all artifacts hashed, workspace restorable from tarballs + Zenodo record 10044268"
+ }
+}

@@ -1,0 +1,28 @@
+{
+  "association-only": [
+    "target",
+    "gene",
+    "class",
+    "assoc_r",
+    "score",
+    "null_z"
+  ],
+  "perturbation-supported": [
+    "target",
+    "gene",
+    "class",
+    "score",
+    "construct_se",
+    "null_z",
+    "assoc_r"
+  ],
+  "reference-discordant": [
+    "target",
+    "gene",
+    "class",
+    "reference_sign",
+    "observed_score",
+    "null_z",
+    "note"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+ "tau": 0.08671622350811958,
+ "ntc_median_abs": 0.03746722638607025,
+ "ntc_mad": 0.024624498561024666,
+ "estimator_note": "pooled-count rate vs batch-matched control rate (weights = unit cell counts per batch). Documented stabilization of the locked batch-matched-NTC rule: median 2-3 cells per target x batch makes per-stratum CPM ratios noise-dominated (87% of edges cleared tau under the naive stratum estimator - recorded as preserved failure). Gate text untouched."
+}
